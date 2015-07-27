@@ -5,12 +5,12 @@
  * @version $Id$
  */
 function aaa(a) {
-		var a = 5;
+	var a = 5;
 
-		function bbb() {
-			alert(a);
-		}
-		return bbb;
+	function bbb() {
+		alert(a);
 	}
-	var c = aaa();
-	c();
+	return bbb;
+}
+var c = aaa();
+c();
