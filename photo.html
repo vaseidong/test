@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drag</title>
+<link rel="stylesheet"href="style/photo.css"type="text/css"/>
+<script type="text/javascript" src='js/Drag.js'></script>
+<script type="text/javascript" src='js/LimitDrag.js'></script>
+<script>
+// window.onload=function() {
+// 	var oDiv=document.getElementById('div1');
+
+// 	oDiv.onmousedown=function(e) {
+// 		var oEvent=e||event;
+//  		disX=oEvent.clientX-oDiv.offsetLeft;
+//  		disY=oEvent.clientY-oDiv.offsetTop;
+
+//  		document.onmousemove=function(e) {
+//  			var oEvent=e||event;
+//  			oDiv.style.left=oEvent.clientX-disX+"px";
+//  			oDiv.style.top=oEvent.clientY-disY+"px";
+//  		}
+//  		document.onmouseup=function() {
+//  			document.onmousemove=null;
+//  			document.onmouseup=null;
+//  		}
+//  	}
+// }
+window.onload = function() {
+	new LimitDrag('div2');
+}
+</script>
+</head>
+<body>
+<div id="div1">
+	<div class='image' id='div2'></div>
+</div>
+</body>
+</html>

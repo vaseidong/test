@@ -1,0 +1,12 @@
+#div1 {
+	width: 360px;
+	height:360px;
+	overflow:hidden;
+}
+.image {
+	width: 100px;
+	height: 100px;
+	margin:10px;
+	background: red;
+	position:absolute;
+}
