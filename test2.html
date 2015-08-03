@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+<script type="text/javascript">
+// var b=5;
+// var basketModule = (function(a) {
+//     var basket = []; //private
+//     return { //exposed to public
+//         addItem: function(values) {
+//             basket.push(values);
+//         },
+//         getItemCount: function() {
+//             return basket.length;
+//         },
+//         getTotal: function(){
+//            var q = this.getItemCount(),p=0;
+//             while(q--){
+//                 p+= basket[q].price; 
+//             }
+//             return p;
+//         }
+//     }
+//     alert(a);
+// }(b));
+function library(module) {
+  $(function() {
+    if (module.init) {
+      module.init();
+    }
+  });
+  return module;
+}
+ 
+var myLibrary = library(function() {
+   return {
+     init: function() {
+       alert(1);
+     }
+   };
+});
+myLibrary.init();
+</script>
+</head>
+<body>
+    
+</body>
+</html>
