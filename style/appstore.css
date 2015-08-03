@@ -1,0 +1,51 @@
+@import "compass/css3";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+$size: 10em;
+$btn: #66cbff;
+$btnShadow: adjust-hue(desaturate(darken($btn, 4%), 20%), 10);
+$shadow: adjust-hue(desaturate(lighten($btn, 15%), 60%), 330);
+$textColor: #fafafa;
+
+.btn {
+  width: $size;
+  height: $size * 0.375;
+  background: $btn;
+  color: $textColor;
+  display: block;
+  text-decoration: none;
+  border-radius: $size * 0.05;
+  font-size: $size / 10;
+  font-family: 'Source Sans Pro', sans-serif;
+  box-shadow: 0 ($size * 0.075) 0 $btnShadow, 0 ($size * 0.125) 0 ($size * 0.035) $shadow;
+  text-align: center;
+  padding: ($size * 0.05) ($size * 0.05) ($size * 0.05) ($size * 0.25);
+  position: relative;
+  @include transition(all .25s);
+
+  &:hover {
+    @include transition(all .25s);
+    background: $textColor;
+    color: $btn;
+    box-shadow: 0 ($size * 0.075) 0 darken($textColor, 22%), 0 ($size * 0.125) 0 ($size * 0.035) $shadow;
+  }
+  @include transition(all .1s);
+
+  &:active {
+    box-shadow: 0 0 0 ($size * 0.035) $shadow;
+    @include transform(translate(0, ($size * 0.125)));
+    @include transition(all .1s);
+  }
+}
+.btn-icon {
+  font-size: ($size * 0.3);
+  position: absolute;
+  top: 6%;
+  left: 6%;
+}
+.top {
+  font-size: ($size * 0.08);
+  letter-spacing: 0.08em;
+}
+.btm {
+  font-size: ($size * 0.15);
+}
