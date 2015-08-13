@@ -19,8 +19,8 @@ function randomStr($len){
 $a=randomStr(4);
 //echo $a;
 //设置图像宽高
-$height=25;
-$width=50;
+$height=40;
+$width=100;
 //生成图像
 $img=imagecreatetruecolor($width,$height);
 //设置图像背景颜色
@@ -30,11 +30,11 @@ $pixels=imagecolorallocate($img, 255, 0, 0);
 //设置字符颜色
 $font=imagecolorallocate($img, 41, 163, 238);
 //绘制像素点
-for ($i=0; $i < 500; $i++) { 
+for ($i=0; $i < 1000; $i++) { 
 	imagesetpixel($img, mt_rand(0,$width), mt_rand(0,$height), $pixels);
 }
 //设置验证码内容及颜色
-imagestring($img, 5, 7, 5, $a, $font);
+imagettftext($img, 15, 20, 25, 38, $font,'ELEPHNT.TTF', $a);
 imagepng($img);
 imagedestroy($img);
 //var_dump($img);

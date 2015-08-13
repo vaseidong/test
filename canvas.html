@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Canvas时钟</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	body{
+		background:black;
+	}
+	#c1{
+		background:white;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var oC = document.getElementById('c1');
+		var oGC = oC.getContext("2d");
+
+		var timer = null;
+
+		function toRun() {
+			oGC.clearRect(0, 0, oC.width, oC.height);
+			var oDate = new Date();
+			var iH = oDate.getHours();
+			var iM = oDate.getMinutes();
+			var iS = oDate.getSeconds();
+			var iHRad = ((iH + iM / 60) * 30 - 90) * Math.PI / 180;
+			var iMRad = (iM * 6 - 90) * Math.PI / 180;
+			var iSRad = (iS * 6 - 90) * Math.PI / 180;
+			//console.log(iMRad);
+
+			//绘制表盘
+			oGC.beginPath();
+			for (var i = 0; i < 60; i++) {
+				oGC.moveTo(200, 200);
+				oGC.arc(200, 200, 150, 6 * i * Math.PI / 180, 6 * (i + 1) * Math.PI / 180, false);
+			}
+			oGC.closePath();
+			oGC.stroke();
+
+			//在内层盖一个圆盘露出刻度
+			oGC.fillStyle = "white";
+			oGC.beginPath();
+
+			oGC.moveTo(200, 200);
+			oGC.arc(200, 200, 140, 0, 2 * Math.PI, false);
+			oGC.closePath();
+			oGC.fill();
+
+			//绘制整点刻度
+			oGC.lineWidth = 3;
+			oGC.beginPath();
+			for (var i = 0; i < 12; i++) {
+				oGC.moveTo(200, 200);
+				oGC.arc(200, 200, 150, 30 * i * Math.PI / 180, 30 * (i + 1) * Math.PI / 180, false);
+			}
+			oGC.closePath();
+			oGC.stroke();
+
+			oGC.fillStyle = "white";
+			oGC.beginPath();
+			oGC.moveTo(200, 200);
+			oGC.arc(200, 200, 135, 0, 2 * Math.PI, false);
+			oGC.closePath();
+			oGC.fill();
+
+			//绘制时针
+			oGC.lineWidth = 5;
+			oGC.beginPath();
+			oGC.moveTo(200, 200);
+			oGC.arc(200, 200, 75, iHRad, iHRad);
+			oGC.closePath();
+			oGC.stroke();
+
+			//绘制分针
+			oGC.lineWidth = 3;
+			oGC.beginPath();
+			oGC.moveTo(200, 200);
+			oGC.arc(200, 200, 100, iMRad, iMRad);
+			oGC.closePath();
+			oGC.stroke();
+
+			//绘制秒针
+			oGC.lineWidth = 1;
+			//oGC.strokeStyle = "red";
+			oGC.beginPath();
+			oGC.moveTo(200, 200);
+			oGC.arc(200, 200, 130, iSRad, iSRad);
+			oGC.closePath();
+			oGC.stroke();
+
+			//绘制中心圆点
+			oGC.beginPath();
+			oGC.fillStyle = "black";
+			oGC.moveTo(200, 200);
+			oGC.arc(200, 200, 5, 0, 2 * Math.PI, false);
+			oGC.closePath();
+			oGC.fill();
+		}
+		setInterval(toRun, 1000);
+
+		toRun();
+	}
+</script>
+</head>
+<body>
+    <canvas id="c1" width="400px" height="400px"></canvas>
+</body>
+</html>
