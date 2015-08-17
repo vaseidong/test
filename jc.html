@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jCanvaScript</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	body{
+		background:black;
+	}
+	canvas{
+		background:white;
+	}
+</style>
+<script type="text/javascript" src="js/jCanvaScript.1.5.18.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		// var oC=document.getElementById('canvas1');
+		// oGC=oC.getContext("2d");
+		// oGC.font="30px 微软雅黑";
+		// oGC.fillStyle="green";
+		// oGC.fillText("500彩票网",100,300);
+		jc.start("canvas1",true);
+		jc.circle(100,100,50,"#F00",1).id("circle1");
+		jc("#circle1").click(function(){
+			this.fadeOut(1000);
+			this.color("#549854");
+		})
+		jc("#circle1").draggable(true);
+		jc.rect(200,200,100,100,"#656596",1).id("rect1");
+
+		// jc("#rect1").mousedown(function(e){
+		// 	//console.log(e);
+		// 	//console.log(this._x);
+		// 	var x=e.x;
+		// 	var y=e.y;
+		// 	var This=this;
+		// 	document.title=e.x+"&"+e.y;
+		// 	oC.onmousemove=function(e){
+		// 		disX=e.x-This._x;
+		// 		disY=e.y-This._y;
+		// 		document.title=disX+"&"+disY;
+		// 		//This.translateTo(This._x,This._y);
+		// 	}
+		// })
+		console.log(jc.imageData(100,100).getData(200,200,100,100));
+		jc.imageData(100,100).getData(200,200,100,100).putData(0,200);
+		jc.text("500彩票网",50,120,"rgb(255,0,0)",1).baseline("top").font("bold 100px 微软雅黑").color("#896524").id("text1");
+		//jc("#text1");
+		//jc("#text1").align("center");
+		//jc("#text1").imageData();
+		
+		// jc("#text1").mouseout(function(){
+		// 	this.fadeTo(1,500);
+		// });
+		// jc("#rect1").click(function(){
+		// 	//this.translateTo(300,300);
+		// 	//jc.clear("canvas1");
+		// 	this.animate({x:10,y:20},2000,{type:'inOut', fn:'exp', n:3},function(){
+		// 		//console.log(this);
+		// 		this.attr({"color":"#FF0000"});
+		// 	});
+		// })
+
+		jc.start("canvas1",true);
+
+	}
+</script>
+</head>
+<body>
+    <canvas id="canvas1" width="600px" height="400px"></canvas>
+</body>
+</html>

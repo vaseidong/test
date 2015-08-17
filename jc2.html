@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jCanvaScript</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	body{
+		background:black;
+	}
+	canvas{
+		background:white;
+	}
+</style>
+<script type="text/javascript" src="js/jCanvaScript.1.5.18.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		var oC=document.getElementById('canvas1');
+		var oGC=oC.getContext("2d");
+		oGC.font="170px impact";
+		var w=oGC.measureText("500彩票网").width;
+		jc.start("canvas1",true);
+		jc.text("500彩票网",0,0,"rgb(255,0,0)",1).baseline("top").color("#896524").id("text1");
+		console.log(w);
+		//var oImg=jc.getImageData()
+		jc.start("canvas1",true);
+	}
+</script>
+</head>
+<body>
+    <canvas id="canvas1" width="800px" height="400px"></canvas>
+</body>
+</html>
