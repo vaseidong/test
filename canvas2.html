@@ -16,54 +16,109 @@
 	}
 </style>
 <script type="text/javascript">
-	window.onload=function(){
-		var oC=document.getElementById('canvas1');
-		var oGC=oC.getContext("2d");
+	window.onload = function() {
+		//不使用Web Worker
+
+		// console.time(1);
+		// var oC = document.getElementById('canvas1');
+		// var oGC = oC.getContext("2d");
+		// //设置字体
+		// oGC.fillStyle = "red";
+		// var h = 170;
+		// oGC.font = "bold " + h + "px impact";
+		// //设置文字定位基准点
+		// oGC.textBaseline = "hanging";
+		// //console.log(oGC.measureText("彩票网").width);
+		// //获取文字宽
+		// var w = oGC.measureText("500彩票网").width;
+		// //console.log((oC.width-w)/2);
+		// //填充
+		// oGC.fillText("500彩票网", (oC.width - w) / 2, (oC.height - h) / 2);
+		// //获取图像数据对象
+		// var imgData = oGC.getImageData((oC.width - w) / 2, (oC.height - h) / 2, w, h);
+		// //console.log(imgData);
+		// oGC.clearRect(0, 0, oC.width, oC.height);
+		// //创建图像数据对象
+		// var newImg = oGC.createImageData(w, h);
+		// var arr = randomArr(w * h, w * h / 5);
+		// for (var i = 0; i < arr.length; i++) {
+		// 	newImg.data[4 * arr[i]] = imgData.data[4 * arr[i]];
+		// 	newImg.data[4 * arr[i] + 1] = imgData.data[4 * arr[i] + 1];
+		// 	newImg.data[4 * arr[i] + 2] = imgData.data[4 * arr[i] + 2];
+		// 	newImg.data[4 * arr[i] + 3] = imgData.data[4 * arr[i] + 3];
+		// }
+		// //填充数据
+		// oGC.putImageData(newImg, (oC.width - w) / 2, (oC.height - h) / 2);
+
+		// console.timeEnd(1);
+
+		// function randomArr(iAll, iNow) {
+		// 	var allArr = [];
+		// 	var newArr = [];
+		// 	for (var i = 0; i < iAll; i++) {
+		// 		allArr.push(i);
+		// 	}
+		// 	for (var i = 0; i < iNow; i++) {
+		// 		newArr.push(allArr.splice(Math.floor(Math.random() * allArr.length), 1));
+		// 	}
+		// 	return newArr;
+		// }
+		// return;
+
+		//使用Web Worker
+
+		console.time(1);
+		var oC = document.getElementById('canvas1');
+		var oGC = oC.getContext("2d");
 		//设置字体
-		oGC.fillStyle="red";
-		var h=170;
-		oGC.font="bold "+h+"px impact";
+		oGC.fillStyle = "red";
+		var h = 170;
+		oGC.font = "bold " + h + "px impact";
 		//设置文字定位基准点
-		oGC.textBaseline="top";
+		oGC.textBaseline = "hanging";
 		//console.log(oGC.measureText("彩票网").width);
 		//获取文字宽
-		var w=oGC.measureText("500彩票网").width;
-		//console.log(w);
+		var w = oGC.measureText("500彩票网").width;
+		//console.log((oC.width-w)/2);
 		//填充
-		oGC.fillText("500彩票网",0,0);
+		oGC.fillText("500彩票网", (oC.width - w) / 2, (oC.height - h) / 2);
 		//获取图像数据对象
-		var imgData=oGC.getImageData(0,0,w,h);
+		var imgData = oGC.getImageData((oC.width - w) / 2, (oC.height - h) / 2, w, h);
 		//console.log(imgData);
-		oGC.clearRect(0,0,oC.width,oC.height);
-		var arr=randomArr(w*h,w*h/1);
+		oGC.clearRect(0, 0, oC.width, oC.height);
 		//创建图像数据对象
-		var newImg=oGC.createImageData(w,h);
+		var newImg = oGC.createImageData(w, h);
 		//console.log(newImg);
-		//data数组存放像素集合数据，每四个为一组，存放rgba值
-		for(var i=0;i<arr.length;i++){
-			newImg.data[4*arr[i]]=imgData.data[4*arr[i]];
-			newImg.data[4*arr[i]+1]=imgData.data[4*arr[i]+1];
-			newImg.data[4*arr[i]+2]=imgData.data[4*arr[i]+2];
-			newImg.data[4*arr[i]+3]=imgData.data[4*arr[i]+3];
+		var w1 = new Worker("js/Worker.js");
+		w1.postMessage(w * h);
+		w1.onmessage = function(e) {
+			var arr = e.data;
+			for (var i = 0; i < arr.length; i++) {
+				newImg.data[4 * arr[i]] = imgData.data[4 * arr[i]];
+				newImg.data[4 * arr[i] + 1] = imgData.data[4 * arr[i] + 1];
+				newImg.data[4 * arr[i] + 2] = imgData.data[4 * arr[i] + 2];
+				newImg.data[4 * arr[i] + 3] = imgData.data[4 * arr[i] + 3];
+			}
+			//填充数据
+			oGC.putImageData(newImg, (oC.width - w) / 2, (oC.height - h) / 2);
 		}
-		//填充数据
-		oGC.putImageData(newImg,10,10);
+		// w1.addEventListener("message",function(e){
+		// 	var arr = e.data;
+		// 	for (var i = 0; i < arr.length; i++) {
+		// 		newImg.data[4 * arr[i]] = imgData.data[4 * arr[i]];
+		// 		newImg.data[4 * arr[i] + 1] = imgData.data[4 * arr[i] + 1];
+		// 		newImg.data[4 * arr[i] + 2] = imgData.data[4 * arr[i] + 2];
+		// 		newImg.data[4 * arr[i] + 3] = imgData.data[4 * arr[i] + 3];
+		// 	}
+		// 	//填充数据
+		// 	oGC.putImageData(newImg, (oC.width - w) / 2, (oC.height - h) / 2);
+		// },false)
+		console.timeEnd(1);
 		//console.log(randomArr(w*h,w*h/10));
-		function randomArr(iAll,iNow){
-			var allArr=[];
-			var newArr=[];
-			for(var i=0;i<iAll;i++){
-				allArr.push(i);
-			}
-			for(var i=0;i<iNow;i++){
-				newArr.push(allArr.splice(Math.floor(Math.random()*allArr.length),1));
-			}
-			return newArr;
-		}
 	}
 </script>
 </head>
 <body>
-    <canvas id="canvas1" width="800px" height="400px"></canvas>
+    <canvas id="canvas1" width="900px" height="400px"></canvas>
 </body>
 </html>
