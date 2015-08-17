@@ -16,7 +16,7 @@
  	return newArr;
  }
  self.onmessage = function(e) {
- 	var arr = randomArr(e.data, e.data / 5);
+ 	var arr = randomArr(e.data, e.data / 10);
  	//data数组存放像素集合数据，每四个为一组，存放rgba值
  	self.postMessage(arr);
  }

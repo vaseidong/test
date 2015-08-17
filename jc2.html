@@ -18,19 +18,49 @@
 <script type="text/javascript" src="js/jCanvaScript.1.5.18.js"></script>
 <script type="text/javascript">
 	window.onload=function(){
-		var oC=document.getElementById('canvas1');
-		var oGC=oC.getContext("2d");
-		oGC.font="170px impact";
-		var w=oGC.measureText("500彩票网").width;
+		// var oC=document.getElementById('canvas1');
+		// var oGC=oC.getContext("2d");
+		// //oGC.font="170px impact";
+
+		// jc.start("canvas1",true);
+		// jc.text("500彩票网",0,0,"rgb(255,0,0)",1).baseline("hanging").font("bold 170px 微软雅黑").color("#896524").id("text1");
+		// var w=oGC.measureText("500彩票网").width;
+		// console.log(jc("#text1"));
+		// //var oImg=jc.getImageData()
+		// jc.start("canvas1",true);
+		
+		// var oC = document.getElementById('canvas1');
+		// var oGC = oC.getContext("2d");
+		// //设置字体
+		// oGC.fillStyle = "red";
+		// var h = 170;
+		// oGC.font = "bold " + h + "px impact";
+		// //设置文字定位基准点
+		// //oGC.textBaseline = "hanging";
+		// //console.log(oGC.measureText("彩票网").width);
+		// //获取文字宽
+		// var w = Math.ceil(oGC.measureText("500彩票网").width);
+		// console.log(w);
 		jc.start("canvas1",true);
-		jc.text("500彩票网",0,0,"rgb(255,0,0)",1).baseline("top").color("#896524").id("text1");
-		console.log(w);
-		//var oImg=jc.getImageData()
+		//填充
+		//oGC.fillText("500彩票网", (oC.width - w) / 2, (oC.height - h) / 2);
+		//console.log((oC.width - w) / 2);
+		jc.rect(0,0,100,100,"#F00",1);
+		jc.imageData(0,0).id("mydata").getData(0, 0,100,100);
+		console.log(jc("#mydata").getPixel(10,10));
+		// jc.text("500彩票网",(oC.width - w) / 2, (oC.height - h) / 2,"rgb(255,0,0)",1).font("bold 170px impact").baseline("hanging").id("text1");
+		// //console.log((oC.width - w) / 2);
+		// console.log(jc.imageData(w,h).getData((oC.width - w) / 2, (oC.height - h) / 2,w,h));
+
+        // jc.circle(50,50,45,'#ff0000',1);
+        // jc.rect(150,50,45,60,'#00ff00',1);
+        // jc.imageData(100,100).id('myImageData_1').getData(0,0,100,100).putData(0,120);
+
 		jc.start("canvas1",true);
 	}
 </script>
 </head>
 <body>
-    <canvas id="canvas1" width="800px" height="400px"></canvas>
+    <canvas id="canvas1" width="900px" height="400px"></canvas>
 </body>
 </html>
